@@ -1,7 +1,6 @@
 import os
 import pefile
 import zlib
-from future.utils import iteritems
 
 IS_WIDE = 0x1
 IS_UPPER = 0x2
@@ -73,11 +72,12 @@ def build_mappings(dll_filepath):
 		export_directory = dll.DIRECTORY_ENTRY_EXPORT
 		for symbol in export_directory.symbols:
 			if symbol.name is not None:
-				api_checksum = calculate_checksum(format_value(symbol.name, API_FORMAT))
+				api_name = symbol.name
+				api_checksum = calculate_checksum(format_value(api_name, API_FORMAT))
 				if ADD_DLL_CHECKSUM:
 					api_checksum = (api_checksum + dll_checksum) & 0xFFFFFFFF
-				result[api_checksum] = {'dll_name': dll_name, 'api_name': symbol.name}
-# 				Message('%s - %x\n' % (symbol.name, value))
+				result[api_checksum] = {'dll_name': dll_name, 'api_name': api_name}
+# 				Message('%s - %x\n' % (api_name, api_checksum))
 	return result
 
 
@@ -86,7 +86,7 @@ def create_enums(mappings):
 	dll_enum = GetEnum(DLL_ENUM_NAME)
 	if dll_enum == 0xFFFFFFFF:
 		dll_enum = AddEnum(GetEnumQty(), DLL_ENUM_NAME, FF_DWRD | FF_0NUMH)
-	for checksum, metadata in iteritems(mappings):
+	for checksum, metadata in mappings.iteritems():
 		if 'api_name' in metadata:
 			if metadata['dll_name'] in created_enums:
 				enum = GetEnum(metadata['dll_name'])
@@ -125,10 +125,10 @@ def bruteforce_enum_values(enums):
 			value = GetOperandValue(head, operand_num)
 			if value in enums:
 				if 'api_name' in enums[value]:
-					Message('%x - found match - %s\n' % (head, enums[value]['api_name']))
+					Message('%x - found match: %s\n' % (head, enums[value]['api_name']))
 					OpEnumEx(head, operand_num, GetEnum(enums[value]['dll_name']), 0)
 				else:
-					Message('%x - found match - %s\n' % (head, enums[value]['dll_name']))
+					Message('%x - found match: %s\n' % (head, enums[value]['dll_name']))
 					OpEnumEx(head, operand_num, GetEnum(DLL_ENUM_NAME), 0)
 
 
