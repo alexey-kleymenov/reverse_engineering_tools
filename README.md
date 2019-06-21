@@ -1,1 +1,1 @@
-# reverse_engineering_tools
+This repository hosts various code samples and other useful information associated mainly with RE and malware analysis in particular
