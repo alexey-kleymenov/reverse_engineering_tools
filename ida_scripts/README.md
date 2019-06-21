@@ -8,7 +8,7 @@ This script aims to create enum values for checksums of API functions and DLL na
 **NB:** checksum algorithms are prone to collisions!
 ### Options
 
-**MSFVenom shellcodes**
+**MSFvenom shellcodes**
 * API_FORMAT = WITH_NULL
 * DLL_FORMAT = WITH_NULL | IS_WIDE | IS_UPPER
 * DLL_WITH_FILE_EXTENSION = True
@@ -16,7 +16,7 @@ This script aims to create enum values for checksums of API functions and DLL na
 * IS_ROR = True
 * SHIFT_VALUE = 0x0D
 
-**CobaltStrike shellcodes**
+**Cobalt Strike-related shellcodes**
 * API_FORMAT = 0
 * DLL_FORMAT = IS_WIDE | IS_UPPER
 * DLL_WITH_FILE_EXTENSION = True
