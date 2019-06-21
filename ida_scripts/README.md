@@ -8,6 +8,8 @@ This script aims to create enum values for checksums of API functions and DLL na
 **NB:** checksum algorithms are prone to collisions!
 ### Options
 
+To begin with, place all required DLLs to the directory specified by PATH_TO_DLLS variable.
+
 **MSFvenom shellcodes**
 * API_FORMAT = WITH_NULL
 * DLL_FORMAT = WITH_NULL | IS_WIDE | IS_UPPER
