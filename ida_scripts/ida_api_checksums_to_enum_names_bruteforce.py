@@ -1,3 +1,6 @@
+# Author: Alexey Kleymenov
+# Original idea: Piotr Krysiuk <piotr_krysiuk@symantec.com>
+
 import os
 import pefile
 import zlib
