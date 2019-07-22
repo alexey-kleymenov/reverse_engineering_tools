@@ -14,7 +14,7 @@ WITH_NULL = 0x8
 PATH_TO_DLLS = 'c:\\dlls'
 
 DLL_ENUM_NAME = 'dll_hashes'
-ENUM_VALUE_SUFFIX = '_chksum'
+ENUM_VALUE_SUFFIX = '_checksum'
 
 API_FORMAT = WITH_NULL
 DLL_FORMAT = WITH_NULL | IS_WIDE | IS_UPPER
@@ -84,6 +84,15 @@ def build_mappings(dll_filepath):
 	return result
 
 
+def parse_dlls(path_to_dlls):
+	list_dlls = os.listdir(path_to_dlls)
+	mappings = {}
+	for dll_filename in list_dlls:
+		Message('Processing %s\n' % dll_filename)
+		mappings.update(build_mappings(os.path.join(path_to_dlls, dll_filename)))
+	return mappings
+
+
 def create_enums(mappings):
 	created_enums = set()
 	dll_enum = GetEnum(DLL_ENUM_NAME)
@@ -103,15 +112,6 @@ def create_enums(mappings):
 			ret_code = AddConst(dll_enum, metadata['dll_name'] + ENUM_VALUE_SUFFIX, checksum)
 			if ret_code:
 				Message('Warning: %s - %x\n' % (metadata['dll_name'], ret_code))
-	return mappings
-
-
-def parse_dlls(path_to_dlls):
-	list_dlls = os.listdir(path_to_dlls)
-	mappings = {}
-	for dll_filename in list_dlls:
-		Message('Processing %s\n' % dll_filename)
-		mappings.update(build_mappings(os.path.join(path_to_dlls, dll_filename)))
 	return mappings
 
 
