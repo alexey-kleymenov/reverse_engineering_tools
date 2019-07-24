@@ -37,9 +37,9 @@ def format_value(name, format):
 		name = name.lower()
 	if format & IS_WIDE:
 		try:
-			name = name.encode('utf-16le')
+			name = name.encode('utf-16le').decode('latin-1')
 		except Exception as e:
-			Message('%s - %s' % (name, str(e)))
+			Message('%s - %s\n' % (name, str(e)))
 	return name
 
 
@@ -75,7 +75,7 @@ def build_mappings(dll_filepath):
 		export_directory = dll.DIRECTORY_ENTRY_EXPORT
 		for symbol in export_directory.symbols:
 			if symbol.name is not None:
-				api_name = symbol.name
+				api_name = symbol.name.decode('latin-1')
 				api_checksum = calculate_checksum(format_value(api_name, API_FORMAT))
 				if ADD_DLL_CHECKSUM:
 					api_checksum = (api_checksum + dll_checksum) & 0xFFFFFFFF
@@ -94,6 +94,9 @@ def parse_dlls(path_to_dlls):
 
 
 def create_enums(mappings):
+	# allows digesting mappings from json
+	if type(next(iter(mappings))) != int:
+		mappings = {int(key): value for key, value in mappings.iteritems()}
 	created_enums = set()
 	dll_enum = GetEnum(DLL_ENUM_NAME)
 	if dll_enum == 0xFFFFFFFF:
@@ -101,15 +104,15 @@ def create_enums(mappings):
 	for checksum, metadata in mappings.iteritems():
 		if 'api_name' in metadata:
 			if metadata['dll_name'] in created_enums:
-				enum = GetEnum(metadata['dll_name'])
+				enum = GetEnum(metadata['dll_name'].encode('latin-1'))
 			else:
-				enum = AddEnum(GetEnumQty(), metadata['dll_name'], FF_DWRD | FF_0NUMH)
+				enum = AddEnum(GetEnumQty(), metadata['dll_name'].encode('latin-1'), FF_DWRD | FF_0NUMH)
 				created_enums.add(metadata['dll_name'])
-			ret_code = AddConst(enum, metadata['api_name'] + ENUM_VALUE_SUFFIX, checksum)
+			ret_code = AddConst(enum, (metadata['api_name'] + ENUM_VALUE_SUFFIX).encode('latin-1'), checksum)
 			if ret_code:
 				Message('Warning: %s - %x\n' % (metadata['api_name'], ret_code))
 		else:
-			ret_code = AddConst(dll_enum, metadata['dll_name'] + ENUM_VALUE_SUFFIX, checksum)
+			ret_code = AddConst(dll_enum, (metadata['dll_name'] + ENUM_VALUE_SUFFIX).encode('latin-1'), checksum)
 			if ret_code:
 				Message('Warning: %s - %x\n' % (metadata['dll_name'], ret_code))
 	return mappings
@@ -129,7 +132,7 @@ def bruteforce_enum_values(enums):
 			if value in enums:
 				if 'api_name' in enums[value]:
 					Message('%x - found match: %s\n' % (head, enums[value]['api_name']))
-					OpEnumEx(head, operand_num, GetEnum(enums[value]['dll_name']), 0)
+					OpEnumEx(head, operand_num, GetEnum(enums[value]['dll_name'].encode('latin-1')), 0)
 				else:
 					Message('%x - found match: %s\n' % (head, enums[value]['dll_name']))
 					OpEnumEx(head, operand_num, GetEnum(DLL_ENUM_NAME), 0)
