@@ -1,10 +1,12 @@
-# Problem
+# How to use both IDA 5-6 and IDA 7 on one machine
+
+## Problem
 
 Starting from version 7.0, IDA (Hex-Rays) became a 64-bit only program. As a consequence, it requires 64-bit Python to operate properly. In contrast, all prior versions of IDA up to 6.95 inclusive required 32-bit Python.
 
 As a result, it becomes a little bit tricky to have both IDA versions installed on the same machine as both of them rely on the same environment variables to find correct Python directories.
 
-# Solution
+## Solution
 
 A custom .lnk file makes it pretty straightforward to use them on the same computer.
 
