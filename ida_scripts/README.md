@@ -26,6 +26,11 @@ To begin with, place all required DLLs to the directory specified by PATH_TO_DLL
 * IS_CRC32 = True
 
 ## name_to_ptr.idc
-This script propagates names to their pointers within the selected area, useful when dealing with dynamically resolved import tables and decrypted strings
+This script propagates addresses' names to their pointers within the selected area, useful when dealing with dynamically resolved import tables and decrypted strings
+
+Tested on IDA Freeware 7.0
+
+## apis_by_hashes.idc
+This script expects the user to place a cursor to the start of the function resolving API names by their hashes. As IDC capabilities are limited, the mappings are pre-built and stored in a separate file `matches.txt`. Adjust the metadata of the instruction mentioning the API hash according to your malware sample.
 
 Tested on IDA Freeware 7.0
