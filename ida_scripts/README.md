@@ -24,3 +24,8 @@ To begin with, place all required DLLs to the directory specified by PATH_TO_DLL
 * DLL_WITH_FILE_EXTENSION = True
 * ADD_DLL_CHECKSUM = False
 * IS_CRC32 = True
+
+## name_to_ptr.idc
+This script propagates names to their pointers within the selected area, useful when dealing with dynamically resolved import tables and decrypted strings
+
+Tested on IDA Freeware 7.0
