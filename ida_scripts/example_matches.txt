@@ -328,6 +328,7 @@ BB74A4A2 - ReleaseMutex
 3B3EE0F9 - ResetEvent
 7B88BF3B - ResumeThread
 609C6936 - RetrieveUrlCacheEntryStreamA
+26E93126 - RtlAddFunctionTable
 C2A6B1AE - RtlAdjustPrivilege
 687B7023 - RtlComputeCrc32
 E9E0A4F7 - RtlCreateUserThread
