@@ -1,5 +1,6 @@
 // This script searches for all cross-references to the api-resolving function pointed by the cursor and maps the identified api hashes (passed via r8d in this case) to the corresponding api names using a pre-built list matches.txt
 // Example of a single matches.txt entry: 2CA5F366 - lstrcpyA
+#include <idc.idc>
 
 static read_matches(file_path) {
   auto f = fopen(file_path, "r");

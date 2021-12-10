@@ -1,4 +1,6 @@
 // A simple script to propagate names to their pointers within the selected area
+#include <idc.idc>
+
 static main()
 {
   auto bitness, select_start, select_end, addr, name;
