@@ -1,4 +1,5 @@
 This repository hosts various code samples and other useful information associated mainly with RE and malware analysis in particular:
+* _honeypots_ - Custom honeypots
 * _ida_flirt_ - Stores useful IDA FLIRT signatures
 * _ida_howto_ - Contains various tips and tricks for performing malware analysis in IDA
 * _ida_plugins_ - This directory contains templates for IDA plugins
