@@ -5,7 +5,9 @@ This is an extremely simple honeypot that opens common HTTP ports and logs all i
 * URL paths requested
 * HTTP headers
 * POST bodies (if any)
+
 Each line is in the JSON format to enable easy parsing by automation.
+
 Always exercise extreme caution when deploying honeypots because of potential malware escape, the authors takes no responsibility for any potential damage caused.
 
 # Installation
