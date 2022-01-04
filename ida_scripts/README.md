@@ -4,10 +4,11 @@ This directory hosts various IDA scripts that might be useful when performing ma
 
 # Scripts
 ## ida_api_checksums_to_enum_names_bruteforce.py
-This script aims to create enum values for checksums of API functions and DLL names commonly used in shellcodes instead of actual names and then search for them througout the disassemled code.
-**NB:** checksum algorithms are prone to collisions!
-### Options
+This script aims to create enum values for checksums of API functions and DLL names commonly used in shellcodes instead of actual names and then search for them throughout the disassembled code.
 
+**NB:** checksum algorithms are prone to collisions!
+
+### Options
 To begin with, place all required DLLs to the directory specified by PATH_TO_DLLS variable.
 
 **MSFvenom shellcodes**
