@@ -35,3 +35,8 @@ Tested on IDA Freeware 7.0
 This script expects the user to place a cursor to the start of the function resolving API names by their hashes. As IDC capabilities are limited, the mappings are pre-built and stored in a separate file `matches.txt`. Adjust the metadata of the instruction mentioning the API hash according to your malware sample.
 
 Tested on IDA Freeware 7.0
+
+## find_and_decrypt_strings.idc
+This script searches for all instances of encrypted strings and decrypts them using the key stored in a separate file key.bin
+
+Tested on IDA Freeware 7.0
