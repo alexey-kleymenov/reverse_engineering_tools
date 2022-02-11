@@ -36,7 +36,7 @@ This script searches for all instances of encrypted strings and decrypts them us
 
 Tested on IDA Freeware 7.0
 
-## name_to_ptr.idc
+## auxiliary/name_to_ptr.idc
 This script propagates addresses' names to their pointers within the selected area, useful when dealing with dynamically resolved import tables and decrypted strings
 
 Tested on IDA Freeware 7.0
