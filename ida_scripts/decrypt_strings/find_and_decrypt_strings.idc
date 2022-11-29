@@ -2,6 +2,7 @@
 // It expects an initialized S array to be dumped into c:\\key.bin prior to execution
 // The cursor should be placed to the decryption routine (for sample 0a0c225f0e5ee941a79f2b7701f1285e4975a2859eb4d025d96d9e366e81abb9, it will be 0x401DE4)
 #include <idc.idc>
+#define chr(x) ((x)==0 ? "\x00" : (x))
 
 static read_key(key_path) {
   auto f, key;
@@ -40,7 +41,7 @@ static decrypt_string(enc_string, key) {
     key[key_swap_index] = value1;
     key_index = (ord(value1) + ord(value2)) & 0xFF;
     key_byte = key[key_index];
-    enc_string[i] = ord(enc_string[i]) ^ ord(key_byte);
+    enc_string[i] = chr(ord(enc_string[i]) ^ ord(key_byte));
   }
   return enc_string;
 }
