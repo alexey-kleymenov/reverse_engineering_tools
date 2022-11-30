@@ -31,12 +31,17 @@ This script expects the user to place a cursor to the start of the function reso
 
 Tested on IDA Freeware 7.0
 
+## restore_apis/dynamic_api_resolution.idc
+This script executes malware and writes down addresses of resolved APIs to a dedicated place in memory. Useful to fight API wrappers used, among others, in BlackMatter ransomware.
+
+Tested on IDA Freeware 8.0
+
 ## decrypt_strings/find_and_decrypt_strings.idc
 This script searches for all instances of encrypted strings and decrypts them using the key stored in a separate file key.bin
 
-Tested on IDA Freeware 7.0
+Tested on IDA Freeware 7.0, upgraded for 8.0
 
 ## auxiliary/name_to_ptr.idc
 This script propagates addresses' names to their pointers within the selected area, useful when dealing with dynamically resolved import tables and decrypted strings
 
-Tested on IDA Freeware 7.0
+Tested on IDA Freeware 7.0 and 8.0
