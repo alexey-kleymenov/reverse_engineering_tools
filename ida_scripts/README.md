@@ -34,6 +34,8 @@ Tested on IDA Freeware 7.0
 ## restore_apis/dynamic_api_resolution.idc
 This script executes malware and writes down addresses of resolved APIs to a dedicated place in memory. Useful to fight API wrappers used, among others, in BlackMatter ransomware.
 
+WARNING! Leads to the code execution! Use at your own risk, always in the isolated environment!
+
 Tested on IDA Freeware 8.0
 
 ## decrypt_strings/find_and_decrypt_strings.idc
