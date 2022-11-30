@@ -9,8 +9,8 @@
 
 static main() {
   auto ep_addr, base_addr, api_addr, i, status, stop_addr, resolved_api_addr, write_api_addr, antire_addr;
-  // stop at the entry point (the address is relative to the first section if the header was't loaded in manual mode)
-  ep_addr = get_segm_start(MinEA()) + 0x10579;
+  // stop at the entry point (fix the ordinal number if your sample has multiple entries)
+  ep_addr = get_entry(get_entry_ordinal(0));
   add_bpt(ep_addr, 1);
   start_process("", "", "");
   wait_for_next_event(WFNE_SUSP, -1);
