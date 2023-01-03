@@ -47,3 +47,9 @@ Tested on IDA Freeware 7.0, upgraded for 8.0
 This script propagates addresses' names to their pointers within the selected area, useful when dealing with dynamically resolved import tables and decrypted strings
 
 Tested on IDA Freeware 7.0 and 8.0
+
+## map_syscalls/syscall_by_ids-arm32.idc
+This script maps syscalls in 32-bit ARM binaries to their human-readable names. The mapping table should be provided in a separate file, see the script for more information.
+
+Tested on IDA Freeware 8.0
+
