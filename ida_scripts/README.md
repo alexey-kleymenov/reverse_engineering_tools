@@ -51,5 +51,5 @@ Tested on IDA Freeware 7.0 and 8.0
 ## map_syscalls/syscall_by_ids-arm32.idc
 This script maps syscalls in 32-bit ARM binaries to their human-readable names. The mapping table should be provided in a separate file, see the script for more information.
 
-Tested on IDA Freeware 8.0
+Tested on IDA Pro 8.0
 
